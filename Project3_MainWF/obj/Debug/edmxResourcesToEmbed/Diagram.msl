@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Project3ModelStoreContainer" CdmEntityContainer="ApplicationDbContext">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="Project3Model.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="Project3Model.Address">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerProducts">
+      <EntityTypeMapping TypeName="Project3Model.CustomerProduct">
+        <MappingFragment StoreEntitySet="CustomerProducts">
+          <ScalarProperty Name="CustomerProductID" ColumnName="CustomerProductID" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="NumberOfProduct" ColumnName="NumberOfProduct" />
+          <ScalarProperty Name="PricePerProduct" ColumnName="PricePerProduct" />
+          <ScalarProperty Name="isAllowedToUse" ColumnName="isAllowedToUse" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Customer_CustomerID" ColumnName="Customer_CustomerID" />
+          <ScalarProperty Name="Transaction_TransactionID" ColumnName="Transaction_TransactionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="Project3Model.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="LastestUpdatedTime" ColumnName="LastestUpdatedTime" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="Contact_PhoneNumber" ColumnName="Contact_PhoneNumber" />
+          <ScalarProperty Name="Contact_Email" ColumnName="Contact_Email" />
+          <ScalarProperty Name="Contact_FacebookLink" ColumnName="Contact_FacebookLink" />
+          <ScalarProperty Name="Contact_WebLink" ColumnName="Contact_WebLink" />
+          <ScalarProperty Name="Contact_PageLink" ColumnName="Contact_PageLink" />
+          <ScalarProperty Name="Contact_isContactable" ColumnName="Contact_isContactable" />
+          <ScalarProperty Name="Address_AddressID" ColumnName="Address_AddressID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceHistories">
+      <EntityTypeMapping TypeName="Project3Model.InvoiceHistory">
+        <MappingFragment StoreEntitySet="InvoiceHistories">
+          <ScalarProperty Name="InvoiceHistoryID" ColumnName="InvoiceHistoryID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="isEditable" ColumnName="isEditable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="Project3Model.Invoice">
+        <MappingFragment StoreEntitySet="Invoices">
+          <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="InvoiceHistory_InvoiceHistoryID" ColumnName="InvoiceHistory_InvoiceHistoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductHistories">
+      <EntityTypeMapping TypeName="Project3Model.ProductHistory">
+        <MappingFragment StoreEntitySet="ProductHistories">
+          <ScalarProperty Name="ProductHistoryID" ColumnName="ProductHistoryID" />
+          <ScalarProperty Name="UpdatedById" ColumnName="UpdatedById" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="OldPrice" ColumnName="OldPrice" />
+          <ScalarProperty Name="ImportPrice" ColumnName="ImportPrice" />
+          <ScalarProperty Name="ImportOldPrice" ColumnName="ImportOldPrice" />
+          <ScalarProperty Name="isUpdated" ColumnName="isUpdated" />
+          <ScalarProperty Name="User_UserID" ColumnName="User_UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="Project3Model.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+          <ScalarProperty Name="PricePerProduct" ColumnName="PricePerProduct" />
+          <ScalarProperty Name="OldProduct" ColumnName="OldProduct" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="SoldOut" ColumnName="SoldOut" />
+          <ScalarProperty Name="Enable" ColumnName="Enable" />
+          <ScalarProperty Name="IsAllowedToOrder" ColumnName="IsAllowedToOrder" />
+          <ScalarProperty Name="Gtin" ColumnName="Gtin" />
+          <ScalarProperty Name="NumberOfExistedProduct" ColumnName="NumberOfExistedProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductSuppliers">
+      <EntityTypeMapping TypeName="Project3Model.ProductSupplier">
+        <MappingFragment StoreEntitySet="ProductSuppliers">
+          <ScalarProperty Name="ProductSupplierId" ColumnName="ProductSupplierId" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="PricePerImportedProduct" ColumnName="PricePerImportedProduct" />
+          <ScalarProperty Name="NumberOfImportedProduct" ColumnName="NumberOfImportedProduct" />
+          <ScalarProperty Name="lastTimeUpdate" ColumnName="lastTimeUpdate" />
+          <ScalarProperty Name="Invoice_InvoiceId" ColumnName="Invoice_InvoiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="Project3Model.Supplier">
+        <MappingFragment StoreEntitySet="Suppliers">
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+          <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+          <ScalarProperty Name="Contact_PhoneNumber" ColumnName="Contact_PhoneNumber" />
+          <ScalarProperty Name="Contact_Email" ColumnName="Contact_Email" />
+          <ScalarProperty Name="Contact_FacebookLink" ColumnName="Contact_FacebookLink" />
+          <ScalarProperty Name="Contact_WebLink" ColumnName="Contact_WebLink" />
+          <ScalarProperty Name="Contact_PageLink" ColumnName="Contact_PageLink" />
+          <ScalarProperty Name="Contact_isContactable" ColumnName="Contact_isContactable" />
+          <ScalarProperty Name="SupplierDescription" ColumnName="SupplierDescription" />
+          <ScalarProperty Name="Address_AddressID" ColumnName="Address_AddressID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionHistories">
+      <EntityTypeMapping TypeName="Project3Model.TransactionHistory">
+        <MappingFragment StoreEntitySet="TransactionHistories">
+          <ScalarProperty Name="TransactionHistoryId" ColumnName="TransactionHistoryId" />
+          <ScalarProperty Name="isChecked" ColumnName="isChecked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="Project3Model.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="isCountable" ColumnName="isCountable" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="TransactionHistory_TransactionHistoryId" ColumnName="TransactionHistory_TransactionHistoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Project3Model.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Contact_PhoneNumber" ColumnName="Contact_PhoneNumber" />
+          <ScalarProperty Name="Contact_Email" ColumnName="Contact_Email" />
+          <ScalarProperty Name="Contact_FacebookLink" ColumnName="Contact_FacebookLink" />
+          <ScalarProperty Name="Contact_WebLink" ColumnName="Contact_WebLink" />
+          <ScalarProperty Name="Contact_PageLink" ColumnName="Contact_PageLink" />
+          <ScalarProperty Name="Contact_isContactable" ColumnName="Contact_isContactable" />
+          <ScalarProperty Name="isSaved" ColumnName="isSaved" />
+          <ScalarProperty Name="LastestTimeUpdate" ColumnName="LastestTimeUpdate" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="Roles" ColumnName="Roles" />
+          <ScalarProperty Name="Address_AddressID" ColumnName="Address_AddressID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DMH">
+    <Key>
+      <PropertyRef Name="MaHang" />
+    </Key>
+    <Property Name="MaHang" Type="Int32" Nullable="false" />
+    <Property Name="TenHang" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DvTinh" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="GiaChuan" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="GiaBan" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="HDBHCTs" Relationship="Self.FK_HDBHCT_MaHang" FromRole="DMH" ToRole="HDBHCT" />
+    <NavigationProperty Name="HDNhapCTs" Relationship="Self.FK_HDHNCT_MaHang" FromRole="DMH" ToRole="HDNhapCT" />
+  </EntityType>
+  <EntityType Name="DMKH">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="Int32" Nullable="false" />
+    <Property Name="TenKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="MaST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SoDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HDNhaps" Relationship="Self.FK_DHN_MaKH" FromRole="DMKH" ToRole="HDNhap" />
+    <NavigationProperty Name="HDBHs" Relationship="Self.FK_HDBH_MaKH" FromRole="DMKH" ToRole="HDBH" />
+    <NavigationProperty Name="PhieuChis" Relationship="Self.FK_PC_MaKH" FromRole="DMKH" ToRole="PhieuChi" />
+    <NavigationProperty Name="PhieuThus" Relationship="Self.FK_PT_MaKH" FromRole="DMKH" ToRole="PhieuThu" />
+  </EntityType>
+  <EntityType Name="HDBH">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="Int32" Nullable="false" />
+    <Property Name="NgayPS" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaKH" Type="Int32" Nullable="false" />
+    <Property Name="SoTT" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="DMKH" Relationship="Self.FK_HDBH_MaKH" FromRole="HDBH" ToRole="DMKH" />
+    <NavigationProperty Name="HDBHCTs" Relationship="Self.FK_HDBHCT_MaHD" FromRole="HDBH" ToRole="HDBHCT" />
+  </EntityType>
+  <EntityType Name="HDBHCT">
+    <Key>
+      <PropertyRef Name="MaHDBHCT" />
+    </Key>
+    <Property Name="MaHDBHCT" Type="Int32" Nullable="false" />
+    <Property Name="MaHD" Type="Int32" Nullable="false" />
+    <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="MaHang" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DMH" Relationship="Self.FK_HDBHCT_MaHang" FromRole="HDBHCT" ToRole="DMH" />
+    <NavigationProperty Name="HDBH" Relationship="Self.FK_HDBHCT_MaHD" FromRole="HDBHCT" ToRole="HDBH" />
+  </EntityType>
+  <EntityType Name="HDNhap">
+    <Key>
+      <PropertyRef Name="MaHDNhap" />
+    </Key>
+    <Property Name="MaHDNhap" Type="Int32" Nullable="false" />
+    <Property Name="NgayNhap" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaKH" Type="Int32" Nullable="false" />
+    <Property Name="SoThanhToan" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="DMKH" Relationship="Self.FK_DHN_MaKH" FromRole="HDNhap" ToRole="DMKH" />
+    <NavigationProperty Name="HDNhapCTs" Relationship="Self.FK_HDNhapCT_MaHDNhap" FromRole="HDNhap" ToRole="HDNhapCT" />
+  </EntityType>
+  <EntityType Name="HDNhapCT">
+    <Key>
+      <PropertyRef Name="MaHDNhapCT" />
+    </Key>
+    <Property Name="MaHDNhapCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaHDNhap" Type="Int32" Nullable="false" />
+    <Property Name="MaHang" Type="Int32" Nullable="false" />
+    <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SoLuong" Type="Int32" />
+    <NavigationProperty Name="DMH" Relationship="Self.FK_HDHNCT_MaHang" FromRole="HDNhapCT" ToRole="DMH" />
+    <NavigationProperty Name="HDNhap" Relationship="Self.FK_HDNhapCT_MaHDNhap" FromRole="HDNhapCT" ToRole="HDNhap" />
+  </EntityType>
+  <EntityType Name="PhieuChi">
+    <Key>
+      <PropertyRef Name="SoPC" />
+    </Key>
+    <Property Name="SoPC" Type="Int32" Nullable="false" />
+    <Property Name="NgayPS" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaKH" Type="Int32" Nullable="false" />
+    <Property Name="SoTien" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="DMKH" Relationship="Self.FK_PC_MaKH" FromRole="PhieuChi" ToRole="DMKH" />
+  </EntityType>
+  <EntityType Name="PhieuThu">
+    <Key>
+      <PropertyRef Name="SoPT" />
+    </Key>
+    <Property Name="SoPT" Type="Int32" Nullable="false" />
+    <Property Name="NgayPS" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaKH" Type="Int32" Nullable="false" />
+    <Property Name="SoTien" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="DMKH" Relationship="Self.FK_PT_MaKH" FromRole="PhieuThu" ToRole="DMKH" />
+  </EntityType>
+  <Association Name="FK_HDBHCT_MaHang">
+    <End Role="DMH" Type="Self.DMH" Multiplicity="1" />
+    <End Role="HDBHCT" Type="Self.HDBHCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMH">
+        <PropertyRef Name="MaHang" />
+      </Principal>
+      <Dependent Role="HDBHCT">
+        <PropertyRef Name="MaHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDHNCT_MaHang">
+    <End Role="DMH" Type="Self.DMH" Multiplicity="1" />
+    <End Role="HDNhapCT" Type="Self.HDNhapCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMH">
+        <PropertyRef Name="MaHang" />
+      </Principal>
+      <Dependent Role="HDNhapCT">
+        <PropertyRef Name="MaHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DHN_MaKH">
+    <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+    <End Role="HDNhap" Type="Self.HDNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMKH">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="HDNhap">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDBH_MaKH">
+    <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+    <End Role="HDBH" Type="Self.HDBH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMKH">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="HDBH">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PC_MaKH">
+    <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+    <End Role="PhieuChi" Type="Self.PhieuChi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMKH">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="PhieuChi">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PT_MaKH">
+    <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+    <End Role="PhieuThu" Type="Self.PhieuThu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMKH">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="PhieuThu">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDBHCT_MaHD">
+    <End Role="HDBH" Type="Self.HDBH" Multiplicity="1" />
+    <End Role="HDBHCT" Type="Self.HDBHCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HDBH">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="HDBHCT">
+        <PropertyRef Name="MaHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDNhapCT_MaHDNhap">
+    <End Role="HDNhap" Type="Self.HDNhap" Multiplicity="1" />
+    <End Role="HDNhapCT" Type="Self.HDNhapCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HDNhap">
+        <PropertyRef Name="MaHDNhap" />
+      </Principal>
+      <Dependent Role="HDNhapCT">
+        <PropertyRef Name="MaHDNhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DataContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DMHs" EntityType="Self.DMH" />
+    <EntitySet Name="DMKHs" EntityType="Self.DMKH" />
+    <EntitySet Name="HDBHs" EntityType="Self.HDBH" />
+    <EntitySet Name="HDBHCTs" EntityType="Self.HDBHCT" />
+    <EntitySet Name="HDNhaps" EntityType="Self.HDNhap" />
+    <EntitySet Name="HDNhapCTs" EntityType="Self.HDNhapCT" />
+    <EntitySet Name="PhieuChis" EntityType="Self.PhieuChi" />
+    <EntitySet Name="PhieuThus" EntityType="Self.PhieuThu" />
+    <AssociationSet Name="FK_HDBHCT_MaHang" Association="Self.FK_HDBHCT_MaHang">
+      <End Role="DMH" EntitySet="DMHs" />
+      <End Role="HDBHCT" EntitySet="HDBHCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDHNCT_MaHang" Association="Self.FK_HDHNCT_MaHang">
+      <End Role="DMH" EntitySet="DMHs" />
+      <End Role="HDNhapCT" EntitySet="HDNhapCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DHN_MaKH" Association="Self.FK_DHN_MaKH">
+      <End Role="DMKH" EntitySet="DMKHs" />
+      <End Role="HDNhap" EntitySet="HDNhaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDBH_MaKH" Association="Self.FK_HDBH_MaKH">
+      <End Role="DMKH" EntitySet="DMKHs" />
+      <End Role="HDBH" EntitySet="HDBHs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PC_MaKH" Association="Self.FK_PC_MaKH">
+      <End Role="DMKH" EntitySet="DMKHs" />
+      <End Role="PhieuChi" EntitySet="PhieuChis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PT_MaKH" Association="Self.FK_PT_MaKH">
+      <End Role="DMKH" EntitySet="DMKHs" />
+      <End Role="PhieuThu" EntitySet="PhieuThus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDBHCT_MaHD" Association="Self.FK_HDBHCT_MaHD">
+      <End Role="HDBH" EntitySet="HDBHs" />
+      <End Role="HDBHCT" EntitySet="HDBHCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDNhapCT_MaHDNhap" Association="Self.FK_HDNhapCT_MaHDNhap">
+      <End Role="HDNhap" EntitySet="HDNhaps" />
+      <End Role="HDNhapCT" EntitySet="HDNhapCTs" />
+    </AssociationSet>
+    <FunctionImport Name="BaoCaoChiTietCongNo" ReturnType="Collection(DataModel.BaoCaoChiTietCongNo_Result)">
+      <Parameter Name="MaKH" Mode="In" Type="Int32" />
+      <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
+      <Parameter Name="NgayKT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="LayThongTinNhapVoiMhVaDate" ReturnType="Collection(DataModel.LayThongTinNhapVoiMhVaDate_Result)">
+      <Parameter Name="MaHang" Mode="In" Type="Int32" />
+      <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
+      <Parameter Name="NgayKT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="LayThongTinNhapVoiMkhVaDate" ReturnType="Collection(DataModel.LayThongTinNhapVoiMkhVaDate_Result)">
+      <Parameter Name="MaKhachHang" Mode="In" Type="Int32" />
+      <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
+      <Parameter Name="NgayKT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="LayThongTinXuatVoiMhVaDate" ReturnType="Collection(DataModel.LayThongTinXuatVoiMhVaDate_Result)">
+      <Parameter Name="MaHang" Mode="In" Type="Int32" />
+      <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
+      <Parameter Name="NgayKT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="LayThongTinXuatVoiMkhVaDate" ReturnType="Collection(DataModel.LayThongTinXuatVoiMkhVaDate_Result)">
+      <Parameter Name="MaKhachHang" Mode="In" Type="Int32" />
+      <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
+      <Parameter Name="NgayKT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="thekho" ReturnType="Collection(DataModel.thekho_Result)">
+      <Parameter Name="mahang" Mode="In" Type="Int32" />
+      <Parameter Name="ngaybd" Mode="In" Type="DateTime" />
+      <Parameter Name="ngaykt" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="TheKhoHang" ReturnType="Collection(DataModel.TheKhoHang_Result)">
+      <Parameter Name="MaHang" Mode="In" Type="Int32" />
+      <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
+      <Parameter Name="NgayKT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="thongTinBanCTByDate" ReturnType="Collection(DataModel.thongTinBanCTByDate_Result)">
+      <Parameter Name="ngayBatDau" Mode="In" Type="DateTime" />
+      <Parameter Name="ngayKetThuc" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="thongTinNhapCTByDate" ReturnType="Collection(DataModel.thongTinNhapCTByDate_Result)">
+      <Parameter Name="ngayBatDau" Mode="In" Type="DateTime" />
+      <Parameter Name="ngayKetThuc" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="TimPhieuThu" ReturnType="Collection(DataModel.TimPhieuThu_Result)">
+      <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
+      <Parameter Name="NgayKT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="TongHopXuatNhapTon" ReturnType="Collection(DataModel.TongHopXuatNhapTon_Result)">
+      <Parameter Name="NgayBD" Mode="In" Type="DateTime" />
+      <Parameter Name="NgayKT" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="BaoCaoChiTietCongNo_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="DateTime" Name="ngay" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="soCt" Nullable="true" />
+    <Property Type="String" Name="loai" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="sono" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="sott" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Decimal" Name="sodu" Nullable="true" Precision="18" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="LayThongTinNhapVoiMhVaDate_Result">
+    <Property Type="Int32" Name="MaHD" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPS" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="Column1" Nullable="false" />
+    <Property Type="Int32" Name="SoLuong" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="LayThongTinNhapVoiMkhVaDate_Result">
+    <Property Type="DateTime" Name="NgayPS" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="MaHD" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="4" />
+    <Property Type="Int32" Name="Column2" Nullable="true" />
+    <Property Type="Decimal" Name="SoTT" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="LayThongTinXuatVoiMhVaDate_Result">
+    <Property Type="Int32" Name="MaHDNhap" Nullable="false" />
+    <Property Type="DateTime" Name="NgayNhap" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="SoLuong" Nullable="true" />
+    <Property Type="Int32" Name="Column1" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="LayThongTinXuatVoiMkhVaDate_Result">
+    <Property Type="DateTime" Name="NgayNhap" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="MaHDNhap" Nullable="false" />
+    <Property Type="String" Name="Column1" Nullable="false" MaxLength="4" />
+    <Property Type="Int32" Name="Column2" Nullable="true" />
+    <Property Type="Decimal" Name="SoThanhToan" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="thekho_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="loai" Nullable="true" MaxLength="15" />
+    <Property Type="Int32" Name="soph" Nullable="true" />
+    <Property Type="DateTime" Name="ngayps" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="nhap" Nullable="true" />
+    <Property Type="Int32" Name="xuat" Nullable="true" />
+    <Property Type="Int32" Name="ton" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="TheKhoHang_Result">
+    <Property Type="Int32" Name="SoChungTu" Nullable="true" />
+    <Property Type="DateTime" Name="NgayPhatSinh" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="SoNhap" Nullable="true" />
+    <Property Type="Int32" Name="SoXuat" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="thongTinBanCTByDate_Result">
+    <Property Type="Int32" Name="MaHD" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPS" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="MaKH" Nullable="false" />
+    <Property Type="Decimal" Name="SoTT" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="thongTinNhapCTByDate_Result">
+    <Property Type="Int32" Name="MaHDNhap" Nullable="false" />
+    <Property Type="DateTime" Name="NgayNhap" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="MaKH" Nullable="false" />
+    <Property Type="Decimal" Name="SoThanhToan" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="TimPhieuThu_Result">
+    <Property Type="Int32" Name="SoPT" Nullable="false" />
+    <Property Type="DateTime" Name="NgayPS" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="MaKH" Nullable="false" />
+    <Property Type="Decimal" Name="SoTien" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="TongHopXuatNhapTon_Result">
+    <Property Type="String" Name="tenhang" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="tondau" Nullable="true" />
+    <Property Type="Int32" Name="nhap" Nullable="true" />
+    <Property Type="Int32" Name="xuat" Nullable="true" />
+    <Property Type="Int32" Name="toncuoi" Nullable="true" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Project3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DMH">
+          <Key>
+            <PropertyRef Name="MaHang" />
+          </Key>
+          <Property Name="MaHang" Type="int" Nullable="false" />
+          <Property Name="TenHang" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="DvTinh" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="GiaChuan" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="GiaBan" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DMKH">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="int" Nullable="false" />
+          <Property Name="TenKH" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="30" />
+          <Property Name="MaST" Type="text" />
+          <Property Name="SoDT" Type="char" MaxLength="10" />
+          <Property Name="Email" Type="text" />
+        </EntityType>
+        <EntityType Name="HDBH">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="int" Nullable="false" />
+          <Property Name="NgayPS" Type="datetime" Nullable="false" />
+          <Property Name="MaKH" Type="int" Nullable="false" />
+          <Property Name="SoTT" Type="money" />
+        </EntityType>
+        <EntityType Name="HDBHCT">
+          <Key>
+            <PropertyRef Name="MaHDBHCT" />
+          </Key>
+          <Property Name="MaHDBHCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaHD" Type="int" Nullable="false" />
+          <Property Name="DonGia" Type="money" Nullable="false" />
+          <Property Name="MaHang" Type="int" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HDNhap">
+          <Key>
+            <PropertyRef Name="MaHDNhap" />
+          </Key>
+          <Property Name="MaHDNhap" Type="int" Nullable="false" />
+          <Property Name="NgayNhap" Type="datetime" Nullable="false" />
+          <Property Name="MaKH" Type="int" Nullable="false" />
+          <Property Name="SoThanhToan" Type="money" />
+        </EntityType>
+        <EntityType Name="HDNhapCT">
+          <Key>
+            <PropertyRef Name="MaHDNhapCT" />
+          </Key>
+          <Property Name="MaHDNhapCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaHDNhap" Type="int" Nullable="false" />
+          <Property Name="MaHang" Type="int" Nullable="false" />
+          <Property Name="DonGia" Type="money" />
+          <Property Name="SoLuong" Type="int" />
+        </EntityType>
+        <EntityType Name="PhieuChi">
+          <Key>
+            <PropertyRef Name="SoPC" />
+          </Key>
+          <Property Name="SoPC" Type="int" Nullable="false" />
+          <Property Name="NgayPS" Type="datetime" Nullable="false" />
+          <Property Name="MaKH" Type="int" Nullable="false" />
+          <Property Name="SoTien" Type="money" />
+        </EntityType>
+        <EntityType Name="PhieuThu">
+          <Key>
+            <PropertyRef Name="SoPT" />
+          </Key>
+          <Property Name="SoPT" Type="int" Nullable="false" />
+          <Property Name="NgayPS" Type="datetime" Nullable="false" />
+          <Property Name="MaKH" Type="int" Nullable="false" />
+          <Property Name="SoTien" Type="money" />
+        </EntityType>
+        <Association Name="FK_DHN_MaKH">
+          <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+          <End Role="HDNhap" Type="Self.HDNhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMKH">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="HDNhap">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDBH_MaKH">
+          <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+          <End Role="HDBH" Type="Self.HDBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMKH">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="HDBH">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDBHCT_MaHang">
+          <End Role="DMH" Type="Self.DMH" Multiplicity="1" />
+          <End Role="HDBHCT" Type="Self.HDBHCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMH">
+              <PropertyRef Name="MaHang" />
+            </Principal>
+            <Dependent Role="HDBHCT">
+              <PropertyRef Name="MaHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDBHCT_MaHD">
+          <End Role="HDBH" Type="Self.HDBH" Multiplicity="1" />
+          <End Role="HDBHCT" Type="Self.HDBHCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HDBH">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="HDBHCT">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDHNCT_MaHang">
+          <End Role="DMH" Type="Self.DMH" Multiplicity="1" />
+          <End Role="HDNhapCT" Type="Self.HDNhapCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMH">
+              <PropertyRef Name="MaHang" />
+            </Principal>
+            <Dependent Role="HDNhapCT">
+              <PropertyRef Name="MaHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDNhapCT_MaHDNhap">
+          <End Role="HDNhap" Type="Self.HDNhap" Multiplicity="1" />
+          <End Role="HDNhapCT" Type="Self.HDNhapCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HDNhap">
+              <PropertyRef Name="MaHDNhap" />
+            </Principal>
+            <Dependent Role="HDNhapCT">
+              <PropertyRef Name="MaHDNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PC_MaKH">
+          <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+          <End Role="PhieuChi" Type="Self.PhieuChi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMKH">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="PhieuChi">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PT_MaKH">
+          <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+          <End Role="PhieuThu" Type="Self.PhieuThu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMKH">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="PhieuThu">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Project3ModelStoreContainer">
+          <EntitySet Name="DMH" EntityType="Self.DMH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DMKH" EntityType="Self.DMKH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HDBH" EntityType="Self.HDBH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HDBHCT" EntityType="Self.HDBHCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HDNhap" EntityType="Self.HDNhap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HDNhapCT" EntityType="Self.HDNhapCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhieuChi" EntityType="Self.PhieuChi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhieuThu" EntityType="Self.PhieuThu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DHN_MaKH" Association="Self.FK_DHN_MaKH">
+            <End Role="DMKH" EntitySet="DMKH" />
+            <End Role="HDNhap" EntitySet="HDNhap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDBH_MaKH" Association="Self.FK_HDBH_MaKH">
+            <End Role="DMKH" EntitySet="DMKH" />
+            <End Role="HDBH" EntitySet="HDBH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDBHCT_MaHang" Association="Self.FK_HDBHCT_MaHang">
+            <End Role="DMH" EntitySet="DMH" />
+            <End Role="HDBHCT" EntitySet="HDBHCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDBHCT_MaHD" Association="Self.FK_HDBHCT_MaHD">
+            <End Role="HDBH" EntitySet="HDBH" />
+            <End Role="HDBHCT" EntitySet="HDBHCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDHNCT_MaHang" Association="Self.FK_HDHNCT_MaHang">
+            <End Role="DMH" EntitySet="DMH" />
+            <End Role="HDNhapCT" EntitySet="HDNhapCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDNhapCT_MaHDNhap" Association="Self.FK_HDNhapCT_MaHDNhap">
+            <End Role="HDNhap" EntitySet="HDNhap" />
+            <End Role="HDNhapCT" EntitySet="HDNhapCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PC_MaKH" Association="Self.FK_PC_MaKH">
+            <End Role="DMKH" EntitySet="DMKH" />
+            <End Role="PhieuChi" EntitySet="PhieuChi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PT_MaKH" Association="Self.FK_PT_MaKH">
+            <End Role="DMKH" EntitySet="DMKH" />
+            <End Role="PhieuThu" EntitySet="PhieuThu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Project3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DMH">
+          <Key>
+            <PropertyRef Name="MaHang" />
+          </Key>
+          <Property Name="MaHang" Type="Int32" Nullable="false" />
+          <Property Name="TenHang" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DvTinh" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="GiaChuan" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="GiaBan" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="HDBHCTs" Relationship="Self.FK_HDBHCT_MaHang" FromRole="DMH" ToRole="HDBHCT" />
+          <NavigationProperty Name="HDNhapCTs" Relationship="Self.FK_HDHNCT_MaHang" FromRole="DMH" ToRole="HDNhapCT" />
+        </EntityType>
+        <EntityType Name="DMKH">
+          <Key>
+            <PropertyRef Name="MaKH" />
+          </Key>
+          <Property Name="MaKH" Type="Int32" Nullable="false" />
+          <Property Name="TenKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MaST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SoDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HDNhaps" Relationship="Self.FK_DHN_MaKH" FromRole="DMKH" ToRole="HDNhap" />
+          <NavigationProperty Name="HDBHs" Relationship="Self.FK_HDBH_MaKH" FromRole="DMKH" ToRole="HDBH" />
+          <NavigationProperty Name="PhieuChis" Relationship="Self.FK_PC_MaKH" FromRole="DMKH" ToRole="PhieuChi" />
+          <NavigationProperty Name="PhieuThus" Relationship="Self.FK_PT_MaKH" FromRole="DMKH" ToRole="PhieuThu" />
+        </EntityType>
+        <EntityType Name="HDBH">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="Int32" Nullable="false" />
+          <Property Name="NgayPS" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaKH" Type="Int32" Nullable="false" />
+          <Property Name="SoTT" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="DMKH" Relationship="Self.FK_HDBH_MaKH" FromRole="HDBH" ToRole="DMKH" />
+          <NavigationProperty Name="HDBHCTs" Relationship="Self.FK_HDBHCT_MaHD" FromRole="HDBH" ToRole="HDBHCT" />
+        </EntityType>
+        <EntityType Name="HDBHCT">
+          <Key>
+            <PropertyRef Name="MaHDBHCT" />
+          </Key>
+          <Property Name="MaHDBHCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaHD" Type="Int32" Nullable="false" />
+          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MaHang" Type="Int32" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DMH" Relationship="Self.FK_HDBHCT_MaHang" FromRole="HDBHCT" ToRole="DMH" />
+          <NavigationProperty Name="HDBH" Relationship="Self.FK_HDBHCT_MaHD" FromRole="HDBHCT" ToRole="HDBH" />
+        </EntityType>
+        <EntityType Name="HDNhap">
+          <Key>
+            <PropertyRef Name="MaHDNhap" />
+          </Key>
+          <Property Name="MaHDNhap" Type="Int32" Nullable="false" />
+          <Property Name="NgayNhap" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaKH" Type="Int32" Nullable="false" />
+          <Property Name="SoThanhToan" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="DMKH" Relationship="Self.FK_DHN_MaKH" FromRole="HDNhap" ToRole="DMKH" />
+          <NavigationProperty Name="HDNhapCTs" Relationship="Self.FK_HDNhapCT_MaHDNhap" FromRole="HDNhap" ToRole="HDNhapCT" />
+        </EntityType>
+        <EntityType Name="HDNhapCT">
+          <Key>
+            <PropertyRef Name="MaHDNhapCT" />
+          </Key>
+          <Property Name="MaHDNhapCT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaHDNhap" Type="Int32" Nullable="false" />
+          <Property Name="MaHang" Type="Int32" Nullable="false" />
+          <Property Name="DonGia" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SoLuong" Type="Int32" />
+          <NavigationProperty Name="DMH" Relationship="Self.FK_HDHNCT_MaHang" FromRole="HDNhapCT" ToRole="DMH" />
+          <NavigationProperty Name="HDNhap" Relationship="Self.FK_HDNhapCT_MaHDNhap" FromRole="HDNhapCT" ToRole="HDNhap" />
+        </EntityType>
+        <EntityType Name="PhieuChi">
+          <Key>
+            <PropertyRef Name="SoPC" />
+          </Key>
+          <Property Name="SoPC" Type="Int32" Nullable="false" />
+          <Property Name="NgayPS" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaKH" Type="Int32" Nullable="false" />
+          <Property Name="SoTien" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="DMKH" Relationship="Self.FK_PC_MaKH" FromRole="PhieuChi" ToRole="DMKH" />
+        </EntityType>
+        <EntityType Name="PhieuThu">
+          <Key>
+            <PropertyRef Name="SoPT" />
+          </Key>
+          <Property Name="SoPT" Type="Int32" Nullable="false" />
+          <Property Name="NgayPS" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaKH" Type="Int32" Nullable="false" />
+          <Property Name="SoTien" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="DMKH" Relationship="Self.FK_PT_MaKH" FromRole="PhieuThu" ToRole="DMKH" />
+        </EntityType>
+        <Association Name="FK_HDBHCT_MaHang">
+          <End Role="DMH" Type="Self.DMH" Multiplicity="1" />
+          <End Role="HDBHCT" Type="Self.HDBHCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMH">
+              <PropertyRef Name="MaHang" />
+            </Principal>
+            <Dependent Role="HDBHCT">
+              <PropertyRef Name="MaHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDHNCT_MaHang">
+          <End Role="DMH" Type="Self.DMH" Multiplicity="1" />
+          <End Role="HDNhapCT" Type="Self.HDNhapCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMH">
+              <PropertyRef Name="MaHang" />
+            </Principal>
+            <Dependent Role="HDNhapCT">
+              <PropertyRef Name="MaHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DHN_MaKH">
+          <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+          <End Role="HDNhap" Type="Self.HDNhap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMKH">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="HDNhap">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDBH_MaKH">
+          <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+          <End Role="HDBH" Type="Self.HDBH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMKH">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="HDBH">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PC_MaKH">
+          <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+          <End Role="PhieuChi" Type="Self.PhieuChi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMKH">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="PhieuChi">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PT_MaKH">
+          <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+          <End Role="PhieuThu" Type="Self.PhieuThu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DMKH">
+              <PropertyRef Name="MaKH" />
+            </Principal>
+            <Dependent Role="PhieuThu">
+              <PropertyRef Name="MaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDBHCT_MaHD">
+          <End Role="HDBH" Type="Self.HDBH" Multiplicity="1" />
+          <End Role="HDBHCT" Type="Self.HDBHCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HDBH">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="HDBHCT">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HDNhapCT_MaHDNhap">
+          <End Role="HDNhap" Type="Self.HDNhap" Multiplicity="1" />
+          <End Role="HDNhapCT" Type="Self.HDNhapCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HDNhap">
+              <PropertyRef Name="MaHDNhap" />
+            </Principal>
+            <Dependent Role="HDNhapCT">
+              <PropertyRef Name="MaHDNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Project3Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DMHs" EntityType="Self.DMH" />
+          <EntitySet Name="DMKHs" EntityType="Self.DMKH" />
+          <EntitySet Name="HDBHs" EntityType="Self.HDBH" />
+          <EntitySet Name="HDBHCTs" EntityType="Self.HDBHCT" />
+          <EntitySet Name="HDNhaps" EntityType="Self.HDNhap" />
+          <EntitySet Name="HDNhapCTs" EntityType="Self.HDNhapCT" />
+          <EntitySet Name="PhieuChis" EntityType="Self.PhieuChi" />
+          <EntitySet Name="PhieuThus" EntityType="Self.PhieuThu" />
+          <AssociationSet Name="FK_HDBHCT_MaHang" Association="Self.FK_HDBHCT_MaHang">
+            <End Role="DMH" EntitySet="DMHs" />
+            <End Role="HDBHCT" EntitySet="HDBHCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDHNCT_MaHang" Association="Self.FK_HDHNCT_MaHang">
+            <End Role="DMH" EntitySet="DMHs" />
+            <End Role="HDNhapCT" EntitySet="HDNhapCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DHN_MaKH" Association="Self.FK_DHN_MaKH">
+            <End Role="DMKH" EntitySet="DMKHs" />
+            <End Role="HDNhap" EntitySet="HDNhaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDBH_MaKH" Association="Self.FK_HDBH_MaKH">
+            <End Role="DMKH" EntitySet="DMKHs" />
+            <End Role="HDBH" EntitySet="HDBHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PC_MaKH" Association="Self.FK_PC_MaKH">
+            <End Role="DMKH" EntitySet="DMKHs" />
+            <End Role="PhieuChi" EntitySet="PhieuChis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PT_MaKH" Association="Self.FK_PT_MaKH">
+            <End Role="DMKH" EntitySet="DMKHs" />
+            <End Role="PhieuThu" EntitySet="PhieuThus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDBHCT_MaHD" Association="Self.FK_HDBHCT_MaHD">
+            <End Role="HDBH" EntitySet="HDBHs" />
+            <End Role="HDBHCT" EntitySet="HDBHCTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HDNhapCT_MaHDNhap" Association="Self.FK_HDNhapCT_MaHDNhap">
+            <End Role="HDNhap" EntitySet="HDNhaps" />
+            <End Role="HDNhapCT" EntitySet="HDNhapCTs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Project3ModelStoreContainer" CdmEntityContainer="Project3Entities2">
+          <EntitySetMapping Name="DMHs">
+            <EntityTypeMapping TypeName="Project3Model.DMH">
+              <MappingFragment StoreEntitySet="DMH">
+                <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+                <ScalarProperty Name="TenHang" ColumnName="TenHang" />
+                <ScalarProperty Name="DvTinh" ColumnName="DvTinh" />
+                <ScalarProperty Name="GiaChuan" ColumnName="GiaChuan" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DMKHs">
+            <EntityTypeMapping TypeName="Project3Model.DMKH">
+              <MappingFragment StoreEntitySet="DMKH">
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="MaST" ColumnName="MaST" />
+                <ScalarProperty Name="SoDT" ColumnName="SoDT" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HDBHs">
+            <EntityTypeMapping TypeName="Project3Model.HDBH">
+              <MappingFragment StoreEntitySet="HDBH">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="SoTT" ColumnName="SoTT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HDBHCTs">
+            <EntityTypeMapping TypeName="Project3Model.HDBHCT">
+              <MappingFragment StoreEntitySet="HDBHCT">
+                <ScalarProperty Name="MaHDBHCT" ColumnName="MaHDBHCT" />
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HDNhaps">
+            <EntityTypeMapping TypeName="Project3Model.HDNhap">
+              <MappingFragment StoreEntitySet="HDNhap">
+                <ScalarProperty Name="MaHDNhap" ColumnName="MaHDNhap" />
+                <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="SoThanhToan" ColumnName="SoThanhToan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HDNhapCTs">
+            <EntityTypeMapping TypeName="Project3Model.HDNhapCT">
+              <MappingFragment StoreEntitySet="HDNhapCT">
+                <ScalarProperty Name="MaHDNhapCT" ColumnName="MaHDNhapCT" />
+                <ScalarProperty Name="MaHDNhap" ColumnName="MaHDNhap" />
+                <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuChis">
+            <EntityTypeMapping TypeName="Project3Model.PhieuChi">
+              <MappingFragment StoreEntitySet="PhieuChi">
+                <ScalarProperty Name="SoPC" ColumnName="SoPC" />
+                <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuThus">
+            <EntityTypeMapping TypeName="Project3Model.PhieuThu">
+              <MappingFragment StoreEntitySet="PhieuThu">
+                <ScalarProperty Name="SoPT" ColumnName="SoPT" />
+                <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+                <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+                <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

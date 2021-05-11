@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="DataContext">
+    <EntitySetMapping Name="DMHs">
+      <EntityTypeMapping TypeName="DataModel.DMH">
+        <MappingFragment StoreEntitySet="DMH">
+          <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+          <ScalarProperty Name="TenHang" ColumnName="TenHang" />
+          <ScalarProperty Name="DvTinh" ColumnName="DvTinh" />
+          <ScalarProperty Name="GiaChuan" ColumnName="GiaChuan" />
+          <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DMKHs">
+      <EntityTypeMapping TypeName="DataModel.DMKH">
+        <MappingFragment StoreEntitySet="DMKH">
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="MaST" ColumnName="MaST" />
+          <ScalarProperty Name="SoDT" ColumnName="SoDT" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDBHs">
+      <EntityTypeMapping TypeName="DataModel.HDBH">
+        <MappingFragment StoreEntitySet="HDBH">
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoTT" ColumnName="SoTT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDBHCTs">
+      <EntityTypeMapping TypeName="DataModel.HDBHCT">
+        <MappingFragment StoreEntitySet="HDBHCT">
+          <ScalarProperty Name="MaHDBHCT" ColumnName="MaHDBHCT" />
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDNhaps">
+      <EntityTypeMapping TypeName="DataModel.HDNhap">
+        <MappingFragment StoreEntitySet="HDNhap">
+          <ScalarProperty Name="MaHDNhap" ColumnName="MaHDNhap" />
+          <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoThanhToan" ColumnName="SoThanhToan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDNhapCTs">
+      <EntityTypeMapping TypeName="DataModel.HDNhapCT">
+        <MappingFragment StoreEntitySet="HDNhapCT">
+          <ScalarProperty Name="MaHDNhapCT" ColumnName="MaHDNhapCT" />
+          <ScalarProperty Name="MaHDNhap" ColumnName="MaHDNhap" />
+          <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhieuChis">
+      <EntityTypeMapping TypeName="DataModel.PhieuChi">
+        <MappingFragment StoreEntitySet="PhieuChi">
+          <ScalarProperty Name="SoPC" ColumnName="SoPC" />
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhieuThus">
+      <EntityTypeMapping TypeName="DataModel.PhieuThu">
+        <MappingFragment StoreEntitySet="PhieuThu">
+          <ScalarProperty Name="SoPT" ColumnName="SoPT" />
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="BaoCaoChiTietCongNo" FunctionName="DataModel.Store.BaoCaoChiTietCongNo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.BaoCaoChiTietCongNo_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ngay" ColumnName="ngay" />
+          <ScalarProperty Name="soCt" ColumnName="soCt" />
+          <ScalarProperty Name="loai" ColumnName="loai" />
+          <ScalarProperty Name="sono" ColumnName="sono" />
+          <ScalarProperty Name="sott" ColumnName="sott" />
+          <ScalarProperty Name="sodu" ColumnName="sodu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LayThongTinNhapVoiMhVaDate" FunctionName="DataModel.Store.LayThongTinNhapVoiMhVaDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.LayThongTinNhapVoiMhVaDate_Result">
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LayThongTinNhapVoiMkhVaDate" FunctionName="DataModel.Store.LayThongTinNhapVoiMkhVaDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.LayThongTinNhapVoiMkhVaDate_Result">
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+          <ScalarProperty Name="SoTT" ColumnName="SoTT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LayThongTinXuatVoiMhVaDate" FunctionName="DataModel.Store.LayThongTinXuatVoiMhVaDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.LayThongTinXuatVoiMhVaDate_Result">
+          <ScalarProperty Name="MaHDNhap" ColumnName="MaHDNhap" />
+          <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LayThongTinXuatVoiMkhVaDate" FunctionName="DataModel.Store.LayThongTinXuatVoiMkhVaDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.LayThongTinXuatVoiMkhVaDate_Result">
+          <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+          <ScalarProperty Name="MaHDNhap" ColumnName="MaHDNhap" />
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Column2" ColumnName="Column2" />
+          <ScalarProperty Name="SoThanhToan" ColumnName="SoThanhToan" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="thekho" FunctionName="DataModel.Store.thekho">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.thekho_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="loai" ColumnName="loai" />
+          <ScalarProperty Name="soph" ColumnName="soph" />
+          <ScalarProperty Name="ngayps" ColumnName="ngayps" />
+          <ScalarProperty Name="nhap" ColumnName="nhap" />
+          <ScalarProperty Name="xuat" ColumnName="xuat" />
+          <ScalarProperty Name="ton" ColumnName="ton" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TheKhoHang" FunctionName="DataModel.Store.TheKhoHang">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.TheKhoHang_Result">
+          <ScalarProperty Name="SoChungTu" ColumnName="SoChungTu" />
+          <ScalarProperty Name="NgayPhatSinh" ColumnName="NgayPhatSinh" />
+          <ScalarProperty Name="SoNhap" ColumnName="SoNhap" />
+          <ScalarProperty Name="SoXuat" ColumnName="SoXuat" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="thongTinBanCTByDate" FunctionName="DataModel.Store.thongTinBanCTByDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.thongTinBanCTByDate_Result">
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoTT" ColumnName="SoTT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="thongTinNhapCTByDate" FunctionName="DataModel.Store.thongTinNhapCTByDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.thongTinNhapCTByDate_Result">
+          <ScalarProperty Name="MaHDNhap" ColumnName="MaHDNhap" />
+          <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoThanhToan" ColumnName="SoThanhToan" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TimPhieuThu" FunctionName="DataModel.Store.TimPhieuThu">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.TimPhieuThu_Result">
+          <ScalarProperty Name="SoPT" ColumnName="SoPT" />
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TongHopXuatNhapTon" FunctionName="DataModel.Store.TongHopXuatNhapTon">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DataModel.TongHopXuatNhapTon_Result">
+          <ScalarProperty Name="tenhang" ColumnName="tenhang" />
+          <ScalarProperty Name="tondau" ColumnName="tondau" />
+          <ScalarProperty Name="nhap" ColumnName="nhap" />
+          <ScalarProperty Name="xuat" ColumnName="xuat" />
+          <ScalarProperty Name="toncuoi" ColumnName="toncuoi" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DMH">
+    <Key>
+      <PropertyRef Name="MaHang" />
+    </Key>
+    <Property Name="MaHang" Type="int" Nullable="false" />
+    <Property Name="TenHang" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="DvTinh" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="GiaChuan" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="GiaBan" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DMKH">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="int" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="30" />
+    <Property Name="MaST" Type="text" />
+    <Property Name="SoDT" Type="char" MaxLength="10" />
+    <Property Name="Email" Type="text" />
+  </EntityType>
+  <EntityType Name="HDBH">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="int" Nullable="false" />
+    <Property Name="NgayPS" Type="datetime" Nullable="false" />
+    <Property Name="MaKH" Type="int" Nullable="false" />
+    <Property Name="SoTT" Type="money" />
+  </EntityType>
+  <EntityType Name="HDBHCT">
+    <Key>
+      <PropertyRef Name="MaHDBHCT" />
+    </Key>
+    <Property Name="MaHDBHCT" Type="int" Nullable="false" />
+    <Property Name="MaHD" Type="int" Nullable="false" />
+    <Property Name="DonGia" Type="money" Nullable="false" />
+    <Property Name="MaHang" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HDNhap">
+    <Key>
+      <PropertyRef Name="MaHDNhap" />
+    </Key>
+    <Property Name="MaHDNhap" Type="int" Nullable="false" />
+    <Property Name="NgayNhap" Type="datetime" Nullable="false" />
+    <Property Name="MaKH" Type="int" Nullable="false" />
+    <Property Name="SoThanhToan" Type="money" />
+  </EntityType>
+  <EntityType Name="HDNhapCT">
+    <Key>
+      <PropertyRef Name="MaHDNhapCT" />
+    </Key>
+    <Property Name="MaHDNhapCT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaHDNhap" Type="int" Nullable="false" />
+    <Property Name="MaHang" Type="int" Nullable="false" />
+    <Property Name="DonGia" Type="money" />
+    <Property Name="SoLuong" Type="int" />
+  </EntityType>
+  <EntityType Name="PhieuChi">
+    <Key>
+      <PropertyRef Name="SoPC" />
+    </Key>
+    <Property Name="SoPC" Type="int" Nullable="false" />
+    <Property Name="NgayPS" Type="datetime" Nullable="false" />
+    <Property Name="MaKH" Type="int" Nullable="false" />
+    <Property Name="SoTien" Type="money" />
+  </EntityType>
+  <EntityType Name="PhieuThu">
+    <Key>
+      <PropertyRef Name="SoPT" />
+    </Key>
+    <Property Name="SoPT" Type="int" Nullable="false" />
+    <Property Name="NgayPS" Type="datetime" Nullable="false" />
+    <Property Name="MaKH" Type="int" Nullable="false" />
+    <Property Name="SoTien" Type="money" />
+  </EntityType>
+  <Association Name="FK_DHN_MaKH">
+    <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+    <End Role="HDNhap" Type="Self.HDNhap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMKH">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="HDNhap">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDBH_MaKH">
+    <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+    <End Role="HDBH" Type="Self.HDBH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMKH">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="HDBH">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDBHCT_MaHang">
+    <End Role="DMH" Type="Self.DMH" Multiplicity="1" />
+    <End Role="HDBHCT" Type="Self.HDBHCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMH">
+        <PropertyRef Name="MaHang" />
+      </Principal>
+      <Dependent Role="HDBHCT">
+        <PropertyRef Name="MaHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDBHCT_MaHD">
+    <End Role="HDBH" Type="Self.HDBH" Multiplicity="1" />
+    <End Role="HDBHCT" Type="Self.HDBHCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HDBH">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="HDBHCT">
+        <PropertyRef Name="MaHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDHNCT_MaHang">
+    <End Role="DMH" Type="Self.DMH" Multiplicity="1" />
+    <End Role="HDNhapCT" Type="Self.HDNhapCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMH">
+        <PropertyRef Name="MaHang" />
+      </Principal>
+      <Dependent Role="HDNhapCT">
+        <PropertyRef Name="MaHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HDNhapCT_MaHDNhap">
+    <End Role="HDNhap" Type="Self.HDNhap" Multiplicity="1" />
+    <End Role="HDNhapCT" Type="Self.HDNhapCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HDNhap">
+        <PropertyRef Name="MaHDNhap" />
+      </Principal>
+      <Dependent Role="HDNhapCT">
+        <PropertyRef Name="MaHDNhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PC_MaKH">
+    <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+    <End Role="PhieuChi" Type="Self.PhieuChi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMKH">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="PhieuChi">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PT_MaKH">
+    <End Role="DMKH" Type="Self.DMKH" Multiplicity="1" />
+    <End Role="PhieuThu" Type="Self.PhieuThu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DMKH">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="PhieuThu">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="BaoCaoChiTietCongNo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaKH" Type="int" Mode="In" />
+    <Parameter Name="NgayBD" Type="datetime" Mode="In" />
+    <Parameter Name="NgayKT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="LayThongTinNhapVoiMhVaDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaHang" Type="int" Mode="In" />
+    <Parameter Name="NgayBD" Type="datetime" Mode="In" />
+    <Parameter Name="NgayKT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="LayThongTinNhapVoiMkhVaDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaKhachHang" Type="int" Mode="In" />
+    <Parameter Name="NgayBD" Type="datetime" Mode="In" />
+    <Parameter Name="NgayKT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="LayThongTinXuatVoiMhVaDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaHang" Type="int" Mode="In" />
+    <Parameter Name="NgayBD" Type="datetime" Mode="In" />
+    <Parameter Name="NgayKT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="LayThongTinXuatVoiMkhVaDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaKhachHang" Type="int" Mode="In" />
+    <Parameter Name="NgayBD" Type="datetime" Mode="In" />
+    <Parameter Name="NgayKT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="thekho" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="mahang" Type="int" Mode="In" />
+    <Parameter Name="ngaybd" Type="datetime" Mode="In" />
+    <Parameter Name="ngaykt" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TheKhoHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaHang" Type="int" Mode="In" />
+    <Parameter Name="NgayBD" Type="datetime" Mode="In" />
+    <Parameter Name="NgayKT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="thongTinBanCTByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ngayBatDau" Type="datetime" Mode="In" />
+    <Parameter Name="ngayKetThuc" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="thongTinNhapCTByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ngayBatDau" Type="datetime" Mode="In" />
+    <Parameter Name="ngayKetThuc" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TimPhieuThu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NgayBD" Type="datetime" Mode="In" />
+    <Parameter Name="NgayKT" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TongHopXuatNhapTon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NgayBD" Type="datetime" Mode="In" />
+    <Parameter Name="NgayKT" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="DataModelStoreContainer">
+    <EntitySet Name="DMH" EntityType="Self.DMH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DMKH" EntityType="Self.DMKH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HDBH" EntityType="Self.HDBH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HDBHCT" EntityType="Self.HDBHCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HDNhap" EntityType="Self.HDNhap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HDNhapCT" EntityType="Self.HDNhapCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuChi" EntityType="Self.PhieuChi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuThu" EntityType="Self.PhieuThu" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DHN_MaKH" Association="Self.FK_DHN_MaKH">
+      <End Role="DMKH" EntitySet="DMKH" />
+      <End Role="HDNhap" EntitySet="HDNhap" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDBH_MaKH" Association="Self.FK_HDBH_MaKH">
+      <End Role="DMKH" EntitySet="DMKH" />
+      <End Role="HDBH" EntitySet="HDBH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDBHCT_MaHang" Association="Self.FK_HDBHCT_MaHang">
+      <End Role="DMH" EntitySet="DMH" />
+      <End Role="HDBHCT" EntitySet="HDBHCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDBHCT_MaHD" Association="Self.FK_HDBHCT_MaHD">
+      <End Role="HDBH" EntitySet="HDBH" />
+      <End Role="HDBHCT" EntitySet="HDBHCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDHNCT_MaHang" Association="Self.FK_HDHNCT_MaHang">
+      <End Role="DMH" EntitySet="DMH" />
+      <End Role="HDNhapCT" EntitySet="HDNhapCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HDNhapCT_MaHDNhap" Association="Self.FK_HDNhapCT_MaHDNhap">
+      <End Role="HDNhap" EntitySet="HDNhap" />
+      <End Role="HDNhapCT" EntitySet="HDNhapCT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PC_MaKH" Association="Self.FK_PC_MaKH">
+      <End Role="DMKH" EntitySet="DMKH" />
+      <End Role="PhieuChi" EntitySet="PhieuChi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PT_MaKH" Association="Self.FK_PT_MaKH">
+      <End Role="DMKH" EntitySet="DMKH" />
+      <End Role="PhieuThu" EntitySet="PhieuThu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

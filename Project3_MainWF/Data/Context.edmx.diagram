@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aa9dcde8ad5440edacda4a17ab3c4e9a" Name="Diagram1">
+        <EntityTypeShape EntityType="Project3Model.DMH" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project3Model.DMKH" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project3Model.HDBH" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project3Model.HDBHCT" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project3Model.HDNhap" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project3Model.HDNhapCT" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project3Model.PhieuChi" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Project3Model.PhieuThu" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="Project3Model.FK_HDBHCT_MaHang" ManuallyRouted="false" />
+        <AssociationConnector Association="Project3Model.FK_HDHNCT_MaHang" ManuallyRouted="false" />
+        <AssociationConnector Association="Project3Model.FK_DHN_MaKH" ManuallyRouted="false" />
+        <AssociationConnector Association="Project3Model.FK_HDBH_MaKH" ManuallyRouted="false" />
+        <AssociationConnector Association="Project3Model.FK_PC_MaKH" ManuallyRouted="false" />
+        <AssociationConnector Association="Project3Model.FK_PT_MaKH" ManuallyRouted="false" />
+        <AssociationConnector Association="Project3Model.FK_HDBHCT_MaHD" ManuallyRouted="false" />
+        <AssociationConnector Association="Project3Model.FK_HDNhapCT_MaHDNhap" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9009ade3b5d74dc798b751184606d077" Name="Diagram1">
+        <EntityTypeShape EntityType="DataModel.DMH" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.DMKH" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.HDBH" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.HDBHCT" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.HDNhap" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.HDNhapCT" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.PhieuChi" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.PhieuThu" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="DataModel.FK_HDBHCT_MaHang" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_HDHNCT_MaHang" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_DHN_MaKH" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_HDBH_MaKH" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_PC_MaKH" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_PT_MaKH" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_HDBHCT_MaHD" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_HDNhapCT_MaHDNhap" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

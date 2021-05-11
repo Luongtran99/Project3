@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Project3ModelStoreContainer" CdmEntityContainer="Project3Entities2">
+    <EntitySetMapping Name="DMHs">
+      <EntityTypeMapping TypeName="Project3Model.DMH">
+        <MappingFragment StoreEntitySet="DMH">
+          <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+          <ScalarProperty Name="TenHang" ColumnName="TenHang" />
+          <ScalarProperty Name="DvTinh" ColumnName="DvTinh" />
+          <ScalarProperty Name="GiaChuan" ColumnName="GiaChuan" />
+          <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DMKHs">
+      <EntityTypeMapping TypeName="Project3Model.DMKH">
+        <MappingFragment StoreEntitySet="DMKH">
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="MaST" ColumnName="MaST" />
+          <ScalarProperty Name="SoDT" ColumnName="SoDT" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDBHs">
+      <EntityTypeMapping TypeName="Project3Model.HDBH">
+        <MappingFragment StoreEntitySet="HDBH">
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoTT" ColumnName="SoTT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDBHCTs">
+      <EntityTypeMapping TypeName="Project3Model.HDBHCT">
+        <MappingFragment StoreEntitySet="HDBHCT">
+          <ScalarProperty Name="MaHDBHCT" ColumnName="MaHDBHCT" />
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDNhaps">
+      <EntityTypeMapping TypeName="Project3Model.HDNhap">
+        <MappingFragment StoreEntitySet="HDNhap">
+          <ScalarProperty Name="MaHDNhap" ColumnName="MaHDNhap" />
+          <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoThanhToan" ColumnName="SoThanhToan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HDNhapCTs">
+      <EntityTypeMapping TypeName="Project3Model.HDNhapCT">
+        <MappingFragment StoreEntitySet="HDNhapCT">
+          <ScalarProperty Name="MaHDNhapCT" ColumnName="MaHDNhapCT" />
+          <ScalarProperty Name="MaHDNhap" ColumnName="MaHDNhap" />
+          <ScalarProperty Name="MaHang" ColumnName="MaHang" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhieuChis">
+      <EntityTypeMapping TypeName="Project3Model.PhieuChi">
+        <MappingFragment StoreEntitySet="PhieuChi">
+          <ScalarProperty Name="SoPC" ColumnName="SoPC" />
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhieuThus">
+      <EntityTypeMapping TypeName="Project3Model.PhieuThu">
+        <MappingFragment StoreEntitySet="PhieuThu">
+          <ScalarProperty Name="SoPT" ColumnName="SoPT" />
+          <ScalarProperty Name="NgayPS" ColumnName="NgayPS" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="SoTien" ColumnName="SoTien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
